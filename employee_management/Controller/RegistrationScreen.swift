@@ -183,7 +183,6 @@ class RegistrationScreen: UIViewController {
 		guard let vehicleKind = getSelectedSegmentValue(index: vehicleKind.selectedSegmentIndex, key: "vehicleKind") else { return }
 		guard let vehiclePlate = vehiclePlate.text else { return }
 		guard let vehicleGear = getSelectedSegmentValue(index: vehicleGear.selectedSegmentIndex, key: "vehicleGear") else { return }
-		let sidecar = isSidecarChecked
 		
 		var bonus = "bonus"
 		switch employeeType {

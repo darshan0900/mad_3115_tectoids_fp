@@ -23,6 +23,7 @@ class Employee: CustomStringConvertible {
 	
 	static let DEFAULT_OCCUPATION_RATE: Float = 100
 	
+	private let empId: String
 	private let name : String
 	private var dob : Date
 	private var monthlySalary: Float
@@ -40,6 +41,7 @@ class Employee: CustomStringConvertible {
 	}
 	
 	init(
+		empId: String,
 		name: String,
 		dob: Date,
 		monthlySalary: Float,
@@ -47,6 +49,7 @@ class Employee: CustomStringConvertible {
 		role : String,
 		employeeVehicle: Vehicle?
 	) {
+		self.empId = empId
 		self.name = name
 		self.dob = dob
 		self.monthlySalary = monthlySalary
@@ -57,6 +60,9 @@ class Employee: CustomStringConvertible {
 		print("We have a new Employee: \(getName()), a \(getRole().lowercased())")
 	}
 	
+	func getEmpId() -> String {
+		return empId
+	}
 	func getName() -> String {
 		return name
 	}

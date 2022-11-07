@@ -17,6 +17,7 @@ class Programmer : Employee {
 	}
 	
 	init(
+		empId: String,
 		name: String,
 		dob: Date,
 		nbProjects: Int = 0,
@@ -26,6 +27,7 @@ class Programmer : Employee {
 	) {
 		self.nbProjects = nbProjects
 		super.init(
+			empId: empId,
 			name: name,
 			dob: dob,
 			monthlySalary: monthlySalary,

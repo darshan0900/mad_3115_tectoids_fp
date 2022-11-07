@@ -14,6 +14,8 @@
 		553D2FB82911C42D0099531F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 553D2FB72911C42D0099531F /* Assets.xcassets */; };
 		553D2FBB2911C42D0099531F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D2FB92911C42D0099531F /* LaunchScreen.storyboard */; };
 		553E7C372915C5420057DE18 /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553E7C362915C5420057DE18 /* RegistrationScreen.swift */; };
+		5551B1A22919A97D00006AD8 /* EmployeeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551B1A12919A97D00006AD8 /* EmployeeItemCell.swift */; };
+		5551B1A42919AA4900006AD8 /* ListEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551B1A32919AA4900006AD8 /* ListEmployeeScreen.swift */; };
 		556AC41629185E7A0048EFCC /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556AC41529185E7A0048EFCC /* Data.plist */; };
 		556AC418291863A40048EFCC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC417291863A40048EFCC /* Helper.swift */; };
 		556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC41929186C0E0048EFCC /* DropdownCell.swift */; };
@@ -37,6 +39,8 @@
 		553D2FBA2911C42D0099531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		553D2FBC2911C42D0099531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		553E7C362915C5420057DE18 /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
+		5551B1A12919A97D00006AD8 /* EmployeeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeItemCell.swift; sourceTree = "<group>"; };
+		5551B1A32919AA4900006AD8 /* ListEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEmployeeScreen.swift; sourceTree = "<group>"; };
 		556AC41529185E7A0048EFCC /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		556AC417291863A40048EFCC /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		556AC41929186C0E0048EFCC /* DropdownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownCell.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				55DA3EBA2913249200B9245E /* DropdownController.swift */,
 				553E7C362915C5420057DE18 /* RegistrationScreen.swift */,
 				556AC41929186C0E0048EFCC /* DropdownCell.swift */,
+				5551B1A12919A97D00006AD8 /* EmployeeItemCell.swift */,
+				5551B1A32919AA4900006AD8 /* ListEmployeeScreen.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FBD4BA2911E89F00E70F46 /* Vehicle.swift in Sources */,
+				5551B1A22919A97D00006AD8 /* EmployeeItemCell.swift in Sources */,
 				F0FBD4B42911E7EF00E70F46 /* Tester.swift in Sources */,
 				F0FBD4BC2911E8B500E70F46 /* Car.swift in Sources */,
 				556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */,
@@ -213,6 +220,7 @@
 				553D2FB12911C42C0099531F /* SceneDelegate.swift in Sources */,
 				553E7C372915C5420057DE18 /* RegistrationScreen.swift in Sources */,
 				F0FBD4B02911E77A00E70F46 /* Manager.swift in Sources */,
+				5551B1A42919AA4900006AD8 /* ListEmployeeScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

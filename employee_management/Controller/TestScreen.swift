@@ -26,8 +26,6 @@ let colors = [
 
 class TestScreen: UIViewController {
 	
-	@IBOutlet weak var testView: UIStackView!
-	
 	@IBOutlet weak var datePicker: UIDatePicker!
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var segmentTest: UISegmentedControl!
@@ -98,9 +96,10 @@ class TestScreen: UIViewController {
 }
 
 extension TestScreen: DropdownDelegate{
-	func selectItem(item: DropdownItem, selectedIndex: Int) {
+	func selectItem(item: DropdownItem, selectedIndex: Int, key: String?) {
 		self.dismiss(animated: true)
 		self.selectedIndex = selectedIndex
 		print(item)
 	}
+	
 }

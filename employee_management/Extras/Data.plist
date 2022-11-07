@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>VehicleType</key>
+	<array>
+		<string>Sport</string>
+		<string>Sedan</string>
+		<string>SUV</string>
+		<string>Hatchback</string>
+	</array>
+	<key>VehicleCategory</key>
+	<dict>
+		<key>Family</key>
+		<string>Family</string>
+		<key>Race</key>
+		<string>Race</string>
+		<key>Normal</key>
+		<string>Not For Race</string>
+	</dict>
+	<key>VehicleMake</key>
+	<dict>
+		<key>Renault Clio</key>
+		<string>Car</string>
+		<key>Mazda</key>
+		<string>Car</string>
+		<key>Honda</key>
+		<string>Motorcycle</string>
+		<key>Kawasaki</key>
+		<string>Motorcycle</string>
+		<key>BMW</key>
+		<string>Car</string>
+		<key>Lamborghini</key>
+		<string>Car</string>
+	</dict>
+</dict>
+</plist>

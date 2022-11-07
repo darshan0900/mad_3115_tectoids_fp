@@ -18,7 +18,7 @@ enum DropdownType {
 }
 
 protocol DropdownDelegate {
-	func selectItem (item: DropdownItem, selectedIndex: Int)
+	func selectItem (item: DropdownItem, selectedIndex: Int, key: String?)
 }
 
 class DropdownController: UIViewController {
@@ -28,6 +28,7 @@ class DropdownController: UIViewController {
 	var type: DropdownType?
 	var selectedIndex: Int?
 	var maxAllowedHeight: CGFloat = CGFloat(0)
+	var key: String?
 	
 	@IBOutlet weak var tableView: UITableView!
 	
@@ -39,9 +40,10 @@ class DropdownController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
-		let indexPath = IndexPath(row: selectedIndex ?? 0, section: 0)
-		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+		if let index = selectedIndex, index > -1{
+			let indexPath = IndexPath(row: index, section: 0)
+			tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+		}
 	}
 	
 	static func getDropdownPicker (detents: [UISheetPresentationController.Detent] = [.medium()]) -> DropdownController? {
@@ -60,34 +62,34 @@ class DropdownController: UIViewController {
 }
 
 extension DropdownController: UITableViewDataSource, UITableViewDelegate{
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 45
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return data?.count ?? 0
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		if indexPath.row == selectedIndex {
-			cell.contentView.backgroundColor = .systemYellow
-		} else{
-			cell.contentView.backgroundColor = .clear
-		}
+		cell.contentView.backgroundColor = .clear
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if let cell = tableView.dequeueReusableCell(withIdentifier: "dropdown"), let data = data {
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "dropdown") as? DropdownCell, let data = data {
 			
 			let item = data[indexPath.row]
 			
-			var contentConfiguration = cell.defaultContentConfiguration()
-			contentConfiguration.text = item.title.capitalized
+			cell.titleLabel.text = item.title.capitalized
 			
 			if let color = item.value as? UIColor, type == .color {
-				contentConfiguration.image = UIImage(named: "square")?.withRenderingMode(.alwaysTemplate)
-				contentConfiguration.imageProperties.cornerRadius = 16
-				contentConfiguration.imageProperties.tintColor = color
-				contentConfiguration.imageProperties.maximumSize = CGSize(width: 16.0, height: 16.0)
+				cell.leftImageView.image = UIImage(named: "square")?.withRenderingMode(.alwaysTemplate)
+				cell.leftImageView.layer.cornerRadius = 12
+				cell.leftImageView.tintColor = color
+				cell.leftImageView.layer.borderColor = UIColor.black.cgColor
+				cell.leftImageView.layer.borderWidth = 1
+			} else{
+				cell.leftImageView.isHidden = true
 			}
-
-			cell.contentConfiguration = contentConfiguration
 			
 			return cell
 		}
@@ -98,7 +100,7 @@ extension DropdownController: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let data = data {
 			let item = data[indexPath.row]
-			delegate?.selectItem(item: item, selectedIndex: indexPath.row)
+			delegate?.selectItem(item: item, selectedIndex: indexPath.row, key: key)
 		}
 	}
 	

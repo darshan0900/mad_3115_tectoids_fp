@@ -14,6 +14,9 @@
 		553D2FB82911C42D0099531F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 553D2FB72911C42D0099531F /* Assets.xcassets */; };
 		553D2FBB2911C42D0099531F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D2FB92911C42D0099531F /* LaunchScreen.storyboard */; };
 		553E7C372915C5420057DE18 /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553E7C362915C5420057DE18 /* RegistrationScreen.swift */; };
+		556AC41629185E7A0048EFCC /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556AC41529185E7A0048EFCC /* Data.plist */; };
+		556AC418291863A40048EFCC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC417291863A40048EFCC /* Helper.swift */; };
+		556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC41929186C0E0048EFCC /* DropdownCell.swift */; };
 		55DA3EBB2913249200B9245E /* DropdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA3EBA2913249200B9245E /* DropdownController.swift */; };
 		F0FBD4B02911E77A00E70F46 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4AF2911E77A00E70F46 /* Manager.swift */; };
 		F0FBD4B22911E7D000E70F46 /* Programmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B12911E7D000E70F46 /* Programmer.swift */; };
@@ -38,6 +41,9 @@
 		553D2FBA2911C42D0099531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		553D2FBC2911C42D0099531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		553E7C362915C5420057DE18 /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
+		556AC41529185E7A0048EFCC /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		556AC417291863A40048EFCC /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		556AC41929186C0E0048EFCC /* DropdownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownCell.swift; sourceTree = "<group>"; };
 		55DA3EBA2913249200B9245E /* DropdownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownController.swift; sourceTree = "<group>"; };
 		F0FBD4AF2911E77A00E70F46 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		F0FBD4B12911E7D000E70F46 /* Programmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Programmer.swift; sourceTree = "<group>"; };
@@ -82,14 +88,22 @@
 		553D2FAD2911C42C0099531F /* employee_management */ = {
 			isa = PBXGroup;
 			children = (
+				556AC41C291879CA0048EFCC /* Controller */,
+				556AC41B291879AE0048EFCC /* Model */,
+				556AC41D29187A0C0048EFCC /* Extras */,
 				553D2FAE2911C42C0099531F /* AppDelegate.swift */,
 				553D2FB02911C42C0099531F /* SceneDelegate.swift */,
-				553D2FB22911C42C0099531F /* TestScreen.swift */,
-				55DA3EBA2913249200B9245E /* DropdownController.swift */,
 				553D2FB42911C42C0099531F /* Main.storyboard */,
 				553D2FB72911C42D0099531F /* Assets.xcassets */,
 				553D2FB92911C42D0099531F /* LaunchScreen.storyboard */,
 				553D2FBC2911C42D0099531F /* Info.plist */,
+			);
+			path = employee_management;
+			sourceTree = "<group>";
+		};
+		556AC41B291879AE0048EFCC /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				F0FBD4B52911E82500E70F46 /* Management.swift */,
 				F0FBD4B72911E87900E70F46 /* Employee.swift */,
 				F0FBD4AF2911E77A00E70F46 /* Manager.swift */,
@@ -101,9 +115,28 @@
 				F0FBD4C32911E94700E70F46 /* Contract.swift */,
 				F0FBD4BF2911E90900E70F46 /* Permanent.swift */,
 				F0FBD4C12911E92300E70F46 /* Temporary.swift */,
-				553E7C362915C5420057DE18 /* RegistrationScreen.swift */,
 			);
-			path = employee_management;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		556AC41C291879CA0048EFCC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				553D2FB22911C42C0099531F /* TestScreen.swift */,
+				55DA3EBA2913249200B9245E /* DropdownController.swift */,
+				553E7C362915C5420057DE18 /* RegistrationScreen.swift */,
+				556AC41929186C0E0048EFCC /* DropdownCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		556AC41D29187A0C0048EFCC /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				556AC41529185E7A0048EFCC /* Data.plist */,
+				556AC417291863A40048EFCC /* Helper.swift */,
+			);
+			path = Extras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +199,7 @@
 			files = (
 				553D2FBB2911C42D0099531F /* LaunchScreen.storyboard in Resources */,
 				553D2FB82911C42D0099531F /* Assets.xcassets in Resources */,
+				556AC41629185E7A0048EFCC /* Data.plist in Resources */,
 				553D2FB62911C42C0099531F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,10 +215,12 @@
 				F0FBD4BA2911E89F00E70F46 /* Vehicle.swift in Sources */,
 				F0FBD4B42911E7EF00E70F46 /* Tester.swift in Sources */,
 				F0FBD4BC2911E8B500E70F46 /* Car.swift in Sources */,
+				556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */,
 				F0FBD4B82911E87900E70F46 /* Employee.swift in Sources */,
 				F0FBD4C42911E94700E70F46 /* Contract.swift in Sources */,
 				F0FBD4BE2911E8D500E70F46 /* Motorcycle.swift in Sources */,
 				553D2FB32911C42C0099531F /* TestScreen.swift in Sources */,
+				556AC418291863A40048EFCC /* Helper.swift in Sources */,
 				55DA3EBB2913249200B9245E /* DropdownController.swift in Sources */,
 				F0FBD4B22911E7D000E70F46 /* Programmer.swift in Sources */,
 				553D2FAF2911C42C0099531F /* AppDelegate.swift in Sources */,

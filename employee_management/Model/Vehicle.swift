@@ -6,58 +6,59 @@
 //
 
 import Foundation
+import UIKit
 
 class Vehicle: CustomStringConvertible {
-    private var _make : String
-    private var _plate : String
-    private var _color : String
-    private var _category : String
-    
-    var description: String{
-        return "\t- make: \(getMake()) \n\t- plate: \(getPlate()) \n\t- color: \(getColor()) \n\t- category: \(getCategory())"
-    }
-    
-    init(
-        make _make: String,
-        plate _plate: String,
-        color _color: String,
-        category _category: String
-    ) {
-        self._make = _make
-        self._plate = _plate
-        self._color = _color
-        self._category = _category
-    }
-    
-    func getMake () -> String{
-        return _make
-    }
-    
-    func setMake (make: String) {
-        self._make = make
-    }
-    
-    func getPlate () -> String {
-        return _plate
-    }
-    
-    func setPlate (plate: String) {
-        self._plate = plate
-    }
-    
-    func getColor () -> String{
-        return _color
-    }
-    
-    func setColor (color: String) {
-        self._color = color
-    }
-    
-    func getCategory() -> String {
-        return _category
-    }
-    
-    func setCategory(category: String) {
-        self._category = category
-    }
+	private var make : String
+	private var plate : String
+	private var color : UIColor
+	private var category : String
+	
+	var description: String{
+		return "\t- make: \(getMake()) \n\t- plate: \(getPlate()) \n\t- color: \(getColor().accessibilityName.capitalized) \n\t- category: \(getCategory())"
+	}
+	
+	init(
+		make: String,
+		plate: String,
+		color: UIColor,
+		category: String
+	) {
+		self.make = make
+		self.plate = plate
+		self.color = color
+		self.category = category
+	}
+	
+	func getMake () -> String{
+		return make
+	}
+	
+	func setMake (make: String) {
+		self.make = make
+	}
+	
+	func getPlate () -> String {
+		return plate
+	}
+	
+	func setPlate (plate: String) {
+		self.plate = plate
+	}
+	
+	func getColor () -> UIColor{
+		return color
+	}
+	
+	func setColor (color: UIColor) {
+		self.color = color
+	}
+	
+	func getCategory() -> String {
+		return category
+	}
+	
+	func setCategory(category: String) {
+		self.category = category
+	}
 }

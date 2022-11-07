@@ -6,48 +6,49 @@
 //
 
 import Foundation
+import UIKit
 
 class Car: Vehicle {
-    private var _gear: String
-    private var _type: String
-    
-    override var description: String{
-        return "Employee has a car. \n \(super.description)\n\t- gear type: \(getGear()) \n\t- type: \(getType())"
-    }
-    
-    init(
-        make _make: String,
-        plate _plate: String,
-        color _color: String,
-        category _category: String,
-        gear _gear: String,
-        type _type: String
-    ) {
-        self._gear = _gear
-        self._type = _type
-        
-        super.init(
-            make: _make,
-            plate: _plate,
-            color: _color,
-            category: _category
-        )
-    }
-    
-    func getGear() -> String {
-        return _gear
-    }
-    
-    func setGear(gear: String) {
-        self._gear = gear
-    }
-    
-    func getType() -> String {
-        return _type
-    }
-    
-    func setType(type: String) {
-        self._type = type
-    }
-    
+	private var gear: String
+	private var type: String
+	
+	override var description: String{
+		return "Employee has a car. \n \(super.description)\n\t- gear type: \(getGear()) \n\t- type: \(getType())"
+	}
+	
+	init(
+		make: String,
+		plate: String,
+		color: UIColor,
+		category: String,
+		gear: String,
+		type: String
+	) {
+		self.gear = gear
+		self.type = type
+		
+		super.init(
+			make: make,
+			plate: plate,
+			color: color,
+			category: category
+		)
+	}
+	
+	func getGear() -> String {
+		return gear
+	}
+	
+	func setGear(gear: String) {
+		self.gear = gear
+	}
+	
+	func getType() -> String {
+		return type
+	}
+	
+	func setType(type: String) {
+		self.type = type
+	}
+	
 }

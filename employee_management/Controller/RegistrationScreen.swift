@@ -269,6 +269,58 @@ class RegistrationScreen: UIViewController {
 			return
 		}
 		
+		let name = firstName + " " + lastName
+		var vehicle:Vehicle
+		if vehicleKind == "Car"{
+			vehicle = Car(
+				make: vehicleMake.title,
+				plate: vehiclePlate,
+				color: vehicleColor.value as! UIColor,
+				category: vehicleCategory.title,
+				gear: vehicleGear,
+				type: vehicleType!.title
+			)
+		}else{
+			vehicle = Motorcycle(
+				make: vehicleMake.title,
+				plate: vehiclePlate,
+				color: vehicleColor.value as! UIColor,
+				category: vehicleCategory.title,
+				sidecar: isSidecarChecked
+			)
+		}
+		var employee: Employee?
+		if employeeType == "Manager"{
+			employee = Manager(
+				name: name,
+				dob: dob.date,
+				nbClients: convertedEmployeeTypeBasedBonus,
+				monthlySalary: convertedMonthlySalary,
+				rate: convertedOccupationRate,
+				employeeVehicle: vehicle
+			)
+		} else if employeeType == "Programmer"{
+			employee = Programmer(
+				name: name,
+				dob: dob.date,
+				nbProjects: convertedEmployeeTypeBasedBonus,
+				monthlySalary: convertedMonthlySalary,
+				rate: convertedOccupationRate,
+				employeeVehicle: vehicle
+			)
+		} else if employeeType == "Tester"{
+			employee = Tester(
+				name: name,
+				dob: dob.date,
+				nbBugs: convertedEmployeeTypeBasedBonus,
+				monthlySalary: convertedMonthlySalary,
+				rate: convertedOccupationRate,
+				employeeVehicle: vehicle
+			)
+		}
+		
+		print(employee)
+		
 		print("submitted")
 		
 	}

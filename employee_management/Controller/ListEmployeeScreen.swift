@@ -10,6 +10,8 @@ import UIKit
 class ListEmployeeScreen: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var addButton: UIButton!
+	
 	var searchController: UISearchController?
 	var employees: [Employee] = []
 	var filteredEmployees: [Employee] = []
@@ -24,6 +26,9 @@ class ListEmployeeScreen: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
+		addButton.layer.cornerRadius = addButton.layer.bounds.width / 2
+		addButton.clipsToBounds = true
 		
 		searchController = UISearchController(searchResultsController: nil)
 		searchController!.searchResultsUpdater = self

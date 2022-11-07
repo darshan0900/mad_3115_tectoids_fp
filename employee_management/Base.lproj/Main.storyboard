@@ -716,9 +716,12 @@
                                     <outlet property="delegate" destination="hb2-IO-Gos" id="a8h-RA-pUC"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEP-nx-Xf4">
-                                <rect key="frame" x="320.66666666666669" y="759.66666666666663" width="48.333333333333314" height="34.333333333333371"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEP-nx-Xf4">
+                                <rect key="frame" x="305" y="730" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="7Nj-rN-FqQ"/>
+                                    <constraint firstAttribute="height" constant="64" id="Pck-vx-RXF"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="person.badge.plus" catalog="system"/>
                                 <connections>
@@ -728,9 +731,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XEk-8W-eXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XEk-8W-eXi" firstAttribute="bottom" secondItem="UEP-nx-Xf4" secondAttribute="bottom" constant="24" id="ZPn-eB-Tuo"/>
+                            <constraint firstItem="XEk-8W-eXi" firstAttribute="trailing" secondItem="UEP-nx-Xf4" secondAttribute="trailing" constant="24" id="haw-LS-HCI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Employees" id="yrM-Ab-Riv"/>
                     <connections>
+                        <outlet property="addButton" destination="UEP-nx-Xf4" id="IHw-gQ-Qsy"/>
                         <outlet property="tableView" destination="5gP-7W-b8n" id="dSB-53-5uo"/>
                     </connections>
                 </viewController>

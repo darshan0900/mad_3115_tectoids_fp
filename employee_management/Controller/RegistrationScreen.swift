@@ -178,16 +178,16 @@ class RegistrationScreen: UIViewController {
 	}
 	
 	@IBAction func onSubmitPress(_ sender: UIButton) {
-		guard let firstName = firstName.text else { return }
-		guard let lastName = lastName.text else { return }
+		guard let firstName = firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let lastName = lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		
 		guard let employeeType = getSelectedSegmentValue(index: employeeType.selectedSegmentIndex, key: "employeeType") else { return }
-		guard let monthlySalary = monthlySalary.text else { return }
-		guard let occupationRate = occupationRate.text else { return }
-		guard let employeeTypeBasedBonus = employeeTypeBasedBonus.text else { return }
+		guard let monthlySalary = monthlySalary.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let occupationRate = occupationRate.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let employeeTypeBasedBonus = employeeTypeBasedBonus.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		
 		guard let vehicleKind = getSelectedSegmentValue(index: vehicleKind.selectedSegmentIndex, key: "vehicleKind") else { return }
-		guard let vehiclePlate = vehiclePlate.text else { return }
+		guard let vehiclePlate = vehiclePlate.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		guard let vehicleGear = getSelectedSegmentValue(index: vehicleGear.selectedSegmentIndex, key: "vehicleGear") else { return }
 		
 		var bonus = "bonus"

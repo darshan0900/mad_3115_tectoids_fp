@@ -639,7 +639,7 @@
             </objects>
             <point key="canvasLocation" x="1515" y="230"/>
         </scene>
-        <!--List Employee Screen-->
+        <!--Employees-->
         <scene sceneID="pHG-Ic-BwP">
             <objects>
                 <viewController storyboardIdentifier="ListEmployeeScreen" id="hb2-IO-Gos" customClass="ListEmployeeScreen" customModule="employee_management" customModuleProvider="target" sceneMemberID="viewController">
@@ -729,7 +729,7 @@
                         <viewLayoutGuide key="safeArea" id="XEk-8W-eXi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yrM-Ab-Riv"/>
+                    <navigationItem key="navigationItem" title="Employees" id="yrM-Ab-Riv"/>
                     <connections>
                         <outlet property="tableView" destination="5gP-7W-b8n" id="dSB-53-5uo"/>
                     </connections>

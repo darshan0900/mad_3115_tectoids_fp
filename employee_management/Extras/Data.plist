@@ -10,14 +10,11 @@
 		<string>Hatchback</string>
 	</array>
 	<key>VehicleCategory</key>
-	<dict>
-		<key>Family</key>
+	<array>
 		<string>Family</string>
-		<key>Race</key>
 		<string>Race</string>
-		<key>Normal</key>
-		<string>Not For Race</string>
-	</dict>
+		<string>Normal</string>
+	</array>
 	<key>VehicleMake</key>
 	<dict>
 		<key>Renault Clio</key>

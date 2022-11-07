@@ -79,7 +79,7 @@ extension DropdownController: UITableViewDataSource, UITableViewDelegate{
 			
 			let item = data[indexPath.row]
 			
-			cell.titleLabel.text = item.title.capitalized
+			cell.titleLabel.text = item.title
 			
 			if let color = item.value as? UIColor, type == .color {
 				cell.leftImageView.image = UIImage(named: "square")?.withRenderingMode(.alwaysTemplate)

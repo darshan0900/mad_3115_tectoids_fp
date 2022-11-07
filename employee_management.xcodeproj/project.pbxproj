@@ -17,18 +17,18 @@
 		556AC41629185E7A0048EFCC /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556AC41529185E7A0048EFCC /* Data.plist */; };
 		556AC418291863A40048EFCC /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC417291863A40048EFCC /* Helper.swift */; };
 		556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AC41929186C0E0048EFCC /* DropdownCell.swift */; };
+		559E500A2919865C00D9A3F8 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559E50092919865C00D9A3F8 /* Contract.swift */; };
+		559E500C2919866400D9A3F8 /* Temporary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559E500B2919866400D9A3F8 /* Temporary.swift */; };
+		559E500E2919866E00D9A3F8 /* Permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559E500D2919866E00D9A3F8 /* Permanent.swift */; };
+		559E50102919867300D9A3F8 /* Management.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559E500F2919867300D9A3F8 /* Management.swift */; };
 		55DA3EBB2913249200B9245E /* DropdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA3EBA2913249200B9245E /* DropdownController.swift */; };
 		F0FBD4B02911E77A00E70F46 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4AF2911E77A00E70F46 /* Manager.swift */; };
 		F0FBD4B22911E7D000E70F46 /* Programmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B12911E7D000E70F46 /* Programmer.swift */; };
 		F0FBD4B42911E7EF00E70F46 /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B32911E7EF00E70F46 /* Tester.swift */; };
-		F0FBD4B62911E82500E70F46 /* Management.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B52911E82500E70F46 /* Management.swift */; };
 		F0FBD4B82911E87900E70F46 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B72911E87900E70F46 /* Employee.swift */; };
 		F0FBD4BA2911E89F00E70F46 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4B92911E89F00E70F46 /* Vehicle.swift */; };
 		F0FBD4BC2911E8B500E70F46 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4BB2911E8B500E70F46 /* Car.swift */; };
 		F0FBD4BE2911E8D500E70F46 /* Motorcycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4BD2911E8D500E70F46 /* Motorcycle.swift */; };
-		F0FBD4C02911E90900E70F46 /* Permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4BF2911E90900E70F46 /* Permanent.swift */; };
-		F0FBD4C22911E92300E70F46 /* Temporary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4C12911E92300E70F46 /* Temporary.swift */; };
-		F0FBD4C42911E94700E70F46 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FBD4C32911E94700E70F46 /* Contract.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,18 +44,18 @@
 		556AC41529185E7A0048EFCC /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		556AC417291863A40048EFCC /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		556AC41929186C0E0048EFCC /* DropdownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownCell.swift; sourceTree = "<group>"; };
+		559E50092919865C00D9A3F8 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
+		559E500B2919866400D9A3F8 /* Temporary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temporary.swift; sourceTree = "<group>"; };
+		559E500D2919866E00D9A3F8 /* Permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permanent.swift; sourceTree = "<group>"; };
+		559E500F2919867300D9A3F8 /* Management.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Management.swift; sourceTree = "<group>"; };
 		55DA3EBA2913249200B9245E /* DropdownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownController.swift; sourceTree = "<group>"; };
 		F0FBD4AF2911E77A00E70F46 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		F0FBD4B12911E7D000E70F46 /* Programmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Programmer.swift; sourceTree = "<group>"; };
 		F0FBD4B32911E7EF00E70F46 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
-		F0FBD4B52911E82500E70F46 /* Management.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Management.swift; sourceTree = "<group>"; };
 		F0FBD4B72911E87900E70F46 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		F0FBD4B92911E89F00E70F46 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		F0FBD4BB2911E8B500E70F46 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		F0FBD4BD2911E8D500E70F46 /* Motorcycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motorcycle.swift; sourceTree = "<group>"; };
-		F0FBD4BF2911E90900E70F46 /* Permanent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permanent.swift; sourceTree = "<group>"; };
-		F0FBD4C12911E92300E70F46 /* Temporary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporary.swift; sourceTree = "<group>"; };
-		F0FBD4C32911E94700E70F46 /* Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,17 +104,17 @@
 		556AC41B291879AE0048EFCC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F0FBD4B52911E82500E70F46 /* Management.swift */,
 				F0FBD4B72911E87900E70F46 /* Employee.swift */,
 				F0FBD4AF2911E77A00E70F46 /* Manager.swift */,
 				F0FBD4B12911E7D000E70F46 /* Programmer.swift */,
+				559E500B2919866400D9A3F8 /* Temporary.swift */,
 				F0FBD4B32911E7EF00E70F46 /* Tester.swift */,
 				F0FBD4B92911E89F00E70F46 /* Vehicle.swift */,
 				F0FBD4BB2911E8B500E70F46 /* Car.swift */,
+				559E500F2919867300D9A3F8 /* Management.swift */,
 				F0FBD4BD2911E8D500E70F46 /* Motorcycle.swift */,
-				F0FBD4C32911E94700E70F46 /* Contract.swift */,
-				F0FBD4BF2911E90900E70F46 /* Permanent.swift */,
-				F0FBD4C12911E92300E70F46 /* Temporary.swift */,
+				559E50092919865C00D9A3F8 /* Contract.swift */,
+				559E500D2919866E00D9A3F8 /* Permanent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,22 +211,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0FBD4C22911E92300E70F46 /* Temporary.swift in Sources */,
+				559E50102919867300D9A3F8 /* Management.swift in Sources */,
 				F0FBD4BA2911E89F00E70F46 /* Vehicle.swift in Sources */,
 				F0FBD4B42911E7EF00E70F46 /* Tester.swift in Sources */,
 				F0FBD4BC2911E8B500E70F46 /* Car.swift in Sources */,
+				559E500A2919865C00D9A3F8 /* Contract.swift in Sources */,
 				556AC41A29186C0E0048EFCC /* DropdownCell.swift in Sources */,
 				F0FBD4B82911E87900E70F46 /* Employee.swift in Sources */,
-				F0FBD4C42911E94700E70F46 /* Contract.swift in Sources */,
+				559E500E2919866E00D9A3F8 /* Permanent.swift in Sources */,
 				F0FBD4BE2911E8D500E70F46 /* Motorcycle.swift in Sources */,
 				553D2FB32911C42C0099531F /* TestScreen.swift in Sources */,
 				556AC418291863A40048EFCC /* Helper.swift in Sources */,
 				55DA3EBB2913249200B9245E /* DropdownController.swift in Sources */,
 				F0FBD4B22911E7D000E70F46 /* Programmer.swift in Sources */,
 				553D2FAF2911C42C0099531F /* AppDelegate.swift in Sources */,
-				F0FBD4C02911E90900E70F46 /* Permanent.swift in Sources */,
-				F0FBD4B62911E82500E70F46 /* Management.swift in Sources */,
 				553D2FB12911C42C0099531F /* SceneDelegate.swift in Sources */,
+				559E500C2919866400D9A3F8 /* Temporary.swift in Sources */,
 				553E7C372915C5420057DE18 /* RegistrationScreen.swift in Sources */,
 				F0FBD4B02911E77A00E70F46 /* Manager.swift in Sources */,
 			);

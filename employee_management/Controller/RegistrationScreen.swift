@@ -10,6 +10,8 @@ import UIKit
 
 class RegistrationScreen: UIViewController {
 
+	@IBOutlet weak var scrollview: UIScrollView!
+	
 	@IBOutlet weak var salaryView: UIStackView!
 	@IBOutlet weak var occupationRateView: UIStackView!
 	
@@ -32,6 +34,22 @@ class RegistrationScreen: UIViewController {
 	@IBOutlet weak var vehicleColorLabel: UILabel!
 	@IBOutlet weak var vehicleColorImage: UIImageView!
 	
+	
+	@IBOutlet weak var employeeId: UILabel!
+	
+	@IBOutlet weak var firstName: UITextField!
+	@IBOutlet weak var lastName: UITextField!
+	@IBOutlet weak var dob: UIDatePicker!
+	
+	@IBOutlet weak var employeeType: UISegmentedControl!
+	@IBOutlet weak var monthlySalary: UITextField!
+	@IBOutlet weak var occupationRate: UITextField!
+	@IBOutlet weak var employeeTypeBasedBonus: UITextField!
+	
+	@IBOutlet weak var vehicleKind: UISegmentedControl!
+	@IBOutlet weak var vehiclePlate: UITextField!
+	@IBOutlet weak var vehicleGear: UISegmentedControl!
+	
 	private var customColorViews: [UIView] = []
 	private var isSidecarChecked = false
 	private var selectedIndexes: [String: Int] = [:]
@@ -50,6 +68,7 @@ class RegistrationScreen: UIViewController {
 		addBorder(vehicleMakeView)
 		addBorder(vehicleColorView)
 		
+		addTapOnView(view: scrollview, action: #selector(dismissKeyboard))
 		addTapOnView(view: vehicleCategoryView, action: #selector(onVehicleCategoryPress))
 		addTapOnView(view: vehicleTypeView, action: #selector(onVehicleTypePress))
 		addTapOnView(view: vehicleMakeView, action: #selector(onVehicleMakePress))
@@ -62,6 +81,11 @@ class RegistrationScreen: UIViewController {
 		vehicleColorImage.layer.cornerRadius = 12
 		vehicleColorImage.layer.borderColor = UIColor.black.cgColor
 		vehicleColorImage.layer.borderWidth = 1
+		
+		dob.maximumDate =  Calendar.current.date(byAdding: .year, value: -18, to: Date())
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
 	
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -75,6 +99,7 @@ class RegistrationScreen: UIViewController {
 	}
 	
 	@IBAction func onEmployeeTypeChanged(_ sender: UISegmentedControl) {
+		dismissKeyboard()
 		if sender.selectedSegmentIndex == 0{
 			self.employeeTypeBasedLabel.text = "Number of Clients"
 		} else if sender.selectedSegmentIndex == 1{
@@ -84,9 +109,10 @@ class RegistrationScreen: UIViewController {
 		}
 	}
 	
-	@IBAction func onVehicleTypeChanged(_ sender: UISegmentedControl) {
+	@IBAction func onVehicleKindChanged(_ sender: UISegmentedControl) {
+		dismissKeyboard()
 		UIView.animate(withDuration: 0.25, animations: {
-			if sender.selectedSegmentIndex == 0{
+			if sender.selectedSegmentIndex == 0 {
 				self.vehicleTypeStack.isHidden = false
 				self.vehicleGearStack.isHidden = false
 				self.sidecarStack.isHidden = true
@@ -95,7 +121,14 @@ class RegistrationScreen: UIViewController {
 				self.vehicleGearStack.isHidden = true
 				self.sidecarStack.isHidden = false
 			}
+			self.selectedIndexes["vehicleMake"] = -1
+			self.vehicleMakeLabel.text = "Choose One"
+			self.vehicleMakeLabel.textColor = .placeholderText
 		})
+	}
+	
+	@objc func dismissKeyboard(){
+		view.endEditing(true)
 	}
 	
 	@objc func onVehicleCategoryPress(){
@@ -107,7 +140,7 @@ class RegistrationScreen: UIViewController {
 	}
 	
 	@objc func onVehicleMakePress(){
-		openDropdown(key: "vehicleMake", data: getVehicleMakeData(), selectedIndex: selectedIndexes["vehicleMake"])
+		openDropdown(key: "vehicleMake", data: getVehicleMakeData(vehicle: getVehicleKind()), selectedIndex: selectedIndexes["vehicleMake"])
 	}
 	
 	@objc func onVehicleColorPress(){
@@ -115,10 +148,11 @@ class RegistrationScreen: UIViewController {
 	}
 	
 	@objc func onCheckboxPress(){
+		dismissKeyboard()
 		let image: String
 		if isSidecarChecked {
 			image = "square"
-		} else{
+		} else {
 			image = "checkmark.square.fill"
 		}
 		isSidecarChecked = !isSidecarChecked
@@ -129,8 +163,114 @@ class RegistrationScreen: UIViewController {
 						  completion: nil)
 	}
 	
+	func getVehicleKind() -> String {
+		if let vehicleKind = getSelectedSegmentValue(index: vehicleKind.selectedSegmentIndex, key: "vehicleKind"){
+			return vehicleKind
+		} else{
+			return ""
+		}
+	}
+	
 	@IBAction func onSubmitPress(_ sender: UIButton) {
+		guard let firstName = firstName.text else { return }
+		guard let lastName = lastName.text else { return }
+		
+		guard let employeeType = getSelectedSegmentValue(index: employeeType.selectedSegmentIndex, key: "employeeType") else { return }
+		guard let monthlySalary = monthlySalary.text else { return }
+		guard let occupationRate = occupationRate.text else { return }
+		guard let employeeTypeBasedBonus = employeeTypeBasedBonus.text else { return }
+		
+		guard let vehicleKind = getSelectedSegmentValue(index: vehicleKind.selectedSegmentIndex, key: "vehicleKind") else { return }
+		guard let vehiclePlate = vehiclePlate.text else { return }
+		guard let vehicleGear = getSelectedSegmentValue(index: vehicleGear.selectedSegmentIndex, key: "vehicleGear") else { return }
+		let sidecar = isSidecarChecked
+		
+		var bonus = "bonus"
+		switch employeeType {
+		case "Manager":
+			bonus = "clients"
+		case "Programmer":
+			bonus = "projects"
+		case "Tester":
+			bonus = "bugs"
+		default:
+			bonus = "bonus"
+		}
+		
+		if firstName.isEmpty{
+			showAlert(message: "Please enter first name", toFocus: self.firstName)
+			return
+		}
+		if lastName.isEmpty{
+			showAlert(message: "Please enter last name", toFocus: self.lastName)
+			return
+		}
+		if monthlySalary.isEmpty{
+			showAlert(message: "Please enter monthly salary", toFocus: self.monthlySalary)
+			return
+		}
+		if occupationRate.isEmpty{
+			showAlert(message: "Please enter occupation rate", toFocus: self.occupationRate)
+			return
+		}
+		if employeeTypeBasedBonus.isEmpty{
+			showAlert(message: "Please enter number of \(bonus)", toFocus: self.employeeTypeBasedBonus)
+			return
+		}
+		guard let vehicleCategory = getSelectedDropdownValue(index: selectedIndexes["vehicleCategory"] ?? -1, key: "vehicleCategory") else {
+			showAlert(message: "Please choose atleast one vehicle category")
+			return
+		}
+		var vehicleType: DropdownItem?
+		if vehicleKind == "Car" {
+			if let temp = getSelectedDropdownValue(index: selectedIndexes["vehicleType"] ?? -1, key: "vehicleType"){
+				vehicleType = temp
+			} else {
+				showAlert(message: "Please choose atleast one vehicle type")
+				return
+			}
+		}
+		guard let vehicleMake = getSelectedDropdownValue(index: selectedIndexes["vehicleMake"] ?? -1, key: "vehicleMake", vehicle: vehicleKind) else {
+			showAlert(message: "Please choose atleast one vehicle make")
+			return
+		}
+		guard let vehicleColor = getSelectedDropdownValue(index: selectedIndexes["vehicleColor"] ?? -1, key: "vehicleColor") else {
+			showAlert(message: "Please choose atleast one vehicle color")
+			return
+		}
+		if vehiclePlate.isEmpty{
+			showAlert(message: "Please enter vehicle plate", toFocus: self.vehiclePlate)
+			return
+		}
+
+		if !validateCharacters(text: firstName){
+			showAlert(message: "Please enter valid first name", toFocus: self.firstName)
+			return
+		}
+		if !validateCharacters(text: lastName){
+			showAlert(message: "Please enter valid last name", toFocus: self.lastName)
+			return
+		}
+		guard let convertedMonthlySalary = Float(monthlySalary) else {
+			showAlert(message: "Please enter valid monthly salary", toFocus: self.monthlySalary)
+			return
+		}
+		guard let convertedOccupationRate = Float(occupationRate) else {
+			showAlert(message: "Please enter valid occupation rate", toFocus: self.occupationRate)
+			return
+		}
+		guard let convertedEmployeeTypeBasedBonus = Int(employeeTypeBasedBonus) else {
+			showAlert(message: "Please enter valid number of \(bonus)", toFocus: self.employeeTypeBasedBonus)
+			return
+		}
+		
+		if !validateLicensePlate(text: vehiclePlate){
+			showAlert(message: "Please enter valid vehicle plate", toFocus: self.vehiclePlate)
+			return
+		}
+		
 		print("submitted")
+		
 	}
 	
 	private func openDropdown(key: String, data: [DropdownItem], selectedIndex: Int? = -1, type: DropdownType = .normal){
@@ -141,6 +281,8 @@ class RegistrationScreen: UIViewController {
 			})]
 		)
 		{
+			dismissKeyboard()
+			
 			screen.delegate = self
 			screen.key = key
 			screen.type = type
@@ -151,7 +293,18 @@ class RegistrationScreen: UIViewController {
 		}
 	}
 	
-	func resetSelectedIndexes() {
+	func showAlert(title: String = "Oops", message: String, toFocus: UITextField? = nil) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let action = UIAlertAction(title: "Okay", style: .cancel,handler: {_ in
+			if let textfield = toFocus {
+				textfield.becomeFirstResponder()
+			}
+		});
+		alert.addAction(action)
+		present(alert, animated: true, completion:nil)
+	}
+	
+	private func resetSelectedIndexes() {
 		selectedIndexes = [
 			"vehicleCategory": -1,
 			"vehicleType": -1,
@@ -171,6 +324,23 @@ class RegistrationScreen: UIViewController {
 		view.layer.cornerRadius = 5
 		view.layer.borderColor = UIColor(named: "textinputBorderColor")?.cgColor
 		customColorViews.append(view)
+	}
+	
+	@objc func keyboardWillShow(notification:NSNotification) {
+		
+		guard let userInfo = notification.userInfo else { return }
+		var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+		keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+		
+		var contentInset:UIEdgeInsets = self.scrollview.contentInset
+		contentInset.bottom = keyboardFrame.size.height
+		scrollview.contentInset = contentInset
+	}
+	
+	@objc func keyboardWillHide(notification:NSNotification) {
+		
+		let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+		scrollview.contentInset = contentInset
 	}
 }
 
@@ -200,5 +370,11 @@ extension RegistrationScreen: DropdownDelegate{
 				print("skip")
 			}
 		}
+	}
+}
+
+extension RegistrationScreen: UITextFieldDelegate{
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		return true
 	}
 }

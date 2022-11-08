@@ -183,3 +183,10 @@ func validate(text: String, with regex: String) -> Bool {
 func validateLicensePlate (text: String) -> Bool {
 	return validate(text: text, with: #"^[A-Z0-9]{3,4}[- ][A-Z0-9]{3,4}$"#)
 }
+
+func formatNumber(number: Float) -> String{
+	let numberFormatter = NumberFormatter()
+	numberFormatter.numberStyle = .decimal
+	let formattedNumber = numberFormatter.string(from: NSNumber(value: number))
+	return formattedNumber ?? String(number)
+}

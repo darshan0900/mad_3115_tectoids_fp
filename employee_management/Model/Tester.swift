@@ -17,6 +17,7 @@ class Tester : Employee {
 	}
 	
 	init(
+		empId: String,
 		name: String,
 		dob: Date,
 		nbBugs: Int,
@@ -26,6 +27,7 @@ class Tester : Employee {
 	) {
 		self.nbBugs = nbBugs
 		super.init(
+			empId: empId,
 			name: name,
 			dob: dob,
 			monthlySalary: monthlySalary,

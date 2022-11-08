@@ -18,6 +18,7 @@ class Manager : Employee {
 	}
 	
 	init(
+		empId: String,
 		name: String,
 		dob: Date,
 		nbClients: Int,
@@ -27,6 +28,7 @@ class Manager : Employee {
 	) {
 		self.nbClients = nbClients
 		super.init(
+			empId: empId,
 			name: name,
 			dob: dob,
 			monthlySalary: monthlySalary,

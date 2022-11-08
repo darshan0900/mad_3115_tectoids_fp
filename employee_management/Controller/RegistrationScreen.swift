@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol RegistrationDelegate {
+	func addEmployee(employee: Employee) -> Void
+}
 
 class RegistrationScreen: UIViewController {
 
@@ -34,7 +37,6 @@ class RegistrationScreen: UIViewController {
 	@IBOutlet weak var vehicleColorLabel: UILabel!
 	@IBOutlet weak var vehicleColorImage: UIImageView!
 	
-	
 	@IBOutlet weak var employeeId: UILabel!
 	
 	@IBOutlet weak var firstName: UITextField!
@@ -54,11 +56,15 @@ class RegistrationScreen: UIViewController {
 	private var isSidecarChecked = false
 	private var selectedIndexes: [String: Int] = [:]
 	
+	var empId = ""
+	var delegate: RegistrationDelegate?
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 		
+		employeeId.text = empId
 		resetSelectedIndexes()
 		
 		addBorder(salaryView)
@@ -172,16 +178,16 @@ class RegistrationScreen: UIViewController {
 	}
 	
 	@IBAction func onSubmitPress(_ sender: UIButton) {
-		guard let firstName = firstName.text else { return }
-		guard let lastName = lastName.text else { return }
+		guard let firstName = firstName.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let lastName = lastName.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		
 		guard let employeeType = getSelectedSegmentValue(index: employeeType.selectedSegmentIndex, key: "employeeType") else { return }
-		guard let monthlySalary = monthlySalary.text else { return }
-		guard let occupationRate = occupationRate.text else { return }
-		guard let employeeTypeBasedBonus = employeeTypeBasedBonus.text else { return }
+		guard let monthlySalary = monthlySalary.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let occupationRate = occupationRate.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+		guard let employeeTypeBasedBonus = employeeTypeBasedBonus.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		
 		guard let vehicleKind = getSelectedSegmentValue(index: vehicleKind.selectedSegmentIndex, key: "vehicleKind") else { return }
-		guard let vehiclePlate = vehiclePlate.text else { return }
+		guard let vehiclePlate = vehiclePlate.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 		guard let vehicleGear = getSelectedSegmentValue(index: vehicleGear.selectedSegmentIndex, key: "vehicleGear") else { return }
 		
 		var bonus = "bonus"
@@ -291,6 +297,7 @@ class RegistrationScreen: UIViewController {
 		var employee: Employee?
 		if employeeType == "Manager"{
 			employee = Manager(
+				empId: empId,
 				name: name,
 				dob: dob.date,
 				nbClients: convertedEmployeeTypeBasedBonus,
@@ -300,6 +307,7 @@ class RegistrationScreen: UIViewController {
 			)
 		} else if employeeType == "Programmer"{
 			employee = Programmer(
+				empId: empId,
 				name: name,
 				dob: dob.date,
 				nbProjects: convertedEmployeeTypeBasedBonus,
@@ -309,6 +317,7 @@ class RegistrationScreen: UIViewController {
 			)
 		} else if employeeType == "Tester"{
 			employee = Tester(
+				empId: empId,
 				name: name,
 				dob: dob.date,
 				nbBugs: convertedEmployeeTypeBasedBonus,
@@ -318,7 +327,9 @@ class RegistrationScreen: UIViewController {
 			)
 		}
 		
-		print(employee)
+		if delegate != nil && employee != nil{
+			delegate?.addEmployee(employee: employee!)
+		}
 		
 		print("submitted")
 		

@@ -18,6 +18,7 @@ class EmployeeScreen: UIViewController {
 	@IBOutlet weak var roleLabel: UILabel!
 	@IBOutlet weak var annualIncomeLabel: UILabel!
 	@IBOutlet weak var occupationRateLabel: UILabel!
+	@IBOutlet weak var bonusTitle: UILabel!
 	@IBOutlet weak var bonusLabel: UILabel!
 	
 	@IBOutlet weak var vehicleKindLabel: UILabel!
@@ -59,16 +60,21 @@ class EmployeeScreen: UIViewController {
 			
 			roleLabel.text = employee.getRole()
 			occupationRateLabel.text = formatNumber(number: employee.getOccupationRate())
+			var bonus = ""
 			if let role = employee as? Manager{
 				annualIncomeLabel.text = "$ " + formatNumber(number: role.getAnnualIncome())
 				bonusLabel.text = String(role.getNoOfClients())
+				bonus = "Clients"
 			} else if let role = employee as? Programmer{
 				annualIncomeLabel.text = "$ " + formatNumber(number: role.getAnnualIncome())
 				bonusLabel.text = String(role.getNoOfProjects())
+				bonus = "Projects"
 			} else if let role = employee as? Tester{
 				annualIncomeLabel.text = "$ " + formatNumber(number: role.getAnnualIncome())
 				bonusLabel.text = String(role.getNoOfBugs())
+				bonus = "Bugs"
 			}
+			bonusTitle.text = "# of \(bonus)"
 			if let vehicle = employee.getEmployeeVehicle(){
 
 				vehicleCategoryLabel.text = vehicle.getCategory()

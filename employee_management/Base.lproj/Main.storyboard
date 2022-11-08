@@ -1034,6 +1034,7 @@
                         <outlet property="ageLabel" destination="q3F-6a-fnj" id="axj-4C-5Lc"/>
                         <outlet property="annualIncomeLabel" destination="GY6-NR-G11" id="n9J-7F-WiX"/>
                         <outlet property="bonusLabel" destination="zZl-Mv-Xk7" id="eG6-wA-7Pj"/>
+                        <outlet property="bonusTitle" destination="bV8-Z0-oas" id="qbr-kH-cHy"/>
                         <outlet property="empIdLabel" destination="i5F-4F-d5z" id="mGg-0A-6KH"/>
                         <outlet property="nameLabel" destination="IP1-rF-ynd" id="MaJ-1J-lZL"/>
                         <outlet property="occupationRateLabel" destination="iaN-cd-jdT" id="ofF-ht-Rop"/>

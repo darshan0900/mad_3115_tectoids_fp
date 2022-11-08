@@ -31,11 +31,17 @@ class ListEmployeeScreen: UIViewController {
 		addButton.clipsToBounds = true
 		
 		searchController = UISearchController(searchResultsController: nil)
-		searchController!.searchResultsUpdater = self
-		searchController!.obscuresBackgroundDuringPresentation = false
-		searchController!.searchBar.placeholder = "Search Employees"
-		navigationItem.searchController = searchController!
-		definesPresentationContext = true
+		if let searchController = searchController{
+			searchController.searchResultsUpdater = self
+			searchController.obscuresBackgroundDuringPresentation = false
+			searchController.searchBar.placeholder = "Search Employees"
+			
+			searchController.searchBar.scopeButtonTitles = Role.allCases.map {$0.rawValue}
+			searchController.searchBar.delegate = self
+			
+			navigationItem.searchController = searchController
+			definesPresentationContext = true
+		}
     }
 
 	@IBAction func onAddPress(_ sender: UIButton) {
@@ -47,9 +53,15 @@ class ListEmployeeScreen: UIViewController {
 		}
 	}
 	
-	func filterData(text: String) {
+	func filterData(text: String, category: Role? = .All) {
 		let input = text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-		filteredEmployees = employees.filter {
+		var filteredData = employees
+		if category != .All{
+			filteredData = employees.filter {
+				$0.getRole() == category?.rawValue
+			}
+		}
+		filteredEmployees = filteredData.filter {
 			$0.getRole().lowercased().contains(input) ||
 			$0.getName().lowercased().contains(input) ||
 			$0.getEmpId().lowercased().contains(input)
@@ -61,13 +73,15 @@ class ListEmployeeScreen: UIViewController {
 extension ListEmployeeScreen: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		var count = 0
-		if isFiltering{
+		var title = "You don't have any employees."
+		if isFiltering {
 			count = filteredEmployees.count
+			title = "No records with applied filters"
 		} else {
 			count = employees.count
 		}
 		if count == 0 {
-			tableView.setEmptyView(title: "You don't have any employees.", message: "All employees will be in here.")
+			tableView.setEmptyView(title: title)
 			return 0
 		}
 		tableView.restore()
@@ -105,7 +119,7 @@ extension ListEmployeeScreen: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		if let screen = storyboard.instantiateViewController(withIdentifier: "EmployeeScreen") as? EmployeeScreen {
-			var item = employees[indexPath.row]
+			let item = employees[indexPath.row]
 			screen.employee = item
 			navigationController?.pushViewController(screen, animated: true)
 		}
@@ -125,33 +139,28 @@ extension ListEmployeeScreen: RegistrationDelegate{
 extension ListEmployeeScreen: UISearchResultsUpdating{
 	func updateSearchResults(for searchController: UISearchController) {
 		let searchBar = searchController.searchBar
-		filterData(text: searchBar.text!)
+		let category = Role(rawValue: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+		filterData(text: searchBar.text!, category: category)
+	}
+}
+
+extension ListEmployeeScreen: UISearchBarDelegate{
+	func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+		let category = Role(rawValue:searchBar.scopeButtonTitles![selectedScope])
+		filterData(text: searchBar.text!, category: category)
 	}
 }
 
 extension UITableView {
-	func setEmptyView(title: String, message: String) {
+	func setEmptyView(title: String) {
 		let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
 		let titleLabel = UILabel()
-		let messageLabel = UILabel()
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		messageLabel.translatesAutoresizingMaskIntoConstraints = false
-		titleLabel.textColor = UIColor.black
-		titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
-		messageLabel.textColor = UIColor.lightGray
-		messageLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 17)
+		titleLabel.textColor = UIColor.label
 		emptyView.addSubview(titleLabel)
-		emptyView.addSubview(messageLabel)
 		titleLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
 		titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
-		messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
-		messageLabel.leftAnchor.constraint(equalTo: emptyView.leftAnchor, constant: 20).isActive = true
-		messageLabel.rightAnchor.constraint(equalTo: emptyView.rightAnchor, constant: -20).isActive = true
 		titleLabel.text = title
-		messageLabel.text = message
-		messageLabel.numberOfLines = 0
-		messageLabel.textAlignment = .center
-		// The only tricky part is here:
 		self.backgroundView = emptyView
 		self.separatorStyle = .none
 	}

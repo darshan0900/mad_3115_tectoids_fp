@@ -8,6 +8,44 @@
 import Foundation
 import UIKit
 
+enum Role: RawRepresentable, CaseIterable {
+	init?(rawValue: String) {
+		switch rawValue {
+		case "All":
+			self = .All
+		case "Manager":
+			self = .Manager
+		case "Programmer":
+			self = .Programmer
+		case "Tester":
+			self = .Tester
+		default:
+			return nil
+		}
+	}
+	
+	var rawValue: RawValue{
+		switch self {
+		case .All:
+			return "All"
+		case .Manager:
+			return "Manager"
+		case .Programmer:
+			return "Programmer"
+		case .Tester:
+			return "Tester"
+		}
+	}
+	
+	
+	typealias RawValue = String
+	
+	case All
+	case Manager
+	case Programmer
+	case Tester
+}
+
 // Plist helper
 
 func getDataFromPlist(key: String) -> Any? {

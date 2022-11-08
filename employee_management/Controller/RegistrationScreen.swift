@@ -87,7 +87,10 @@ class RegistrationScreen: UIViewController {
 		vehicleColorImage.layer.cornerRadius = 12
 		vehicleColorImage.layer.borderColor = UIColor.black.cgColor
 		vehicleColorImage.layer.borderWidth = 1
-		
+	
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		dob.minimumDate = dateFormatter.date(from: "1900-01-01")
 		dob.maximumDate =  Calendar.current.date(byAdding: .year, value: -18, to: Date())
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)

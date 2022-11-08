@@ -277,6 +277,15 @@ class RegistrationScreen: UIViewController {
 			return
 		}
 		
+		if convertedOccupationRate < 10 {
+			showAlert(message: "Please enter occupation rate greater then 10", toFocus: self.occupationRate)
+			return
+		}
+		if convertedOccupationRate > 100 {
+			showAlert(message: "Please enter occupation rate less than 100", toFocus: self.occupationRate)
+		}
+		
+		
 		let name = firstName + " " + lastName
 		var vehicle:Vehicle
 		if vehicleKind == "Car"{

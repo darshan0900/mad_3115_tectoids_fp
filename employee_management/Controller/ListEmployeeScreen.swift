@@ -102,6 +102,15 @@ extension ListEmployeeScreen: UITableViewDelegate, UITableViewDataSource{
 		}
 	}
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		if let screen = storyboard.instantiateViewController(withIdentifier: "EmployeeScreen") as? EmployeeScreen {
+			var item = employees[indexPath.row]
+			screen.employee = item
+			navigationController?.pushViewController(screen, animated: true)
+		}
+	}
+	
 }
 
 extension ListEmployeeScreen: RegistrationDelegate{

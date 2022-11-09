@@ -7,7 +7,7 @@
 
 import Foundation
 
-private func validateOccupationRate (_ rate: Float) -> Float {
+func validateOccupationRate (_ rate: Float) -> Float {
 	if rate < 10 {
 		return 10
 	}
@@ -19,45 +19,28 @@ private func validateOccupationRate (_ rate: Float) -> Float {
 	}
 }
 
-class Employee: CustomStringConvertible {
+let DEFAULT_OCCUPATION_RATE: Float = 100
+
+protocol Employee: CustomStringConvertible {
 	
-	static let DEFAULT_OCCUPATION_RATE: Float = 100
+	var empId: String { get }
+	var name : String { get }
+	var dob : Date { get set }
+	var monthlySalary: Float { get set }
+	var rate : Float { get set }
+	var role : String { get set }
+	var employeeVehicle: Vehicle? { get set }
 	
-	private let empId: String
-	private let name : String
-	private var dob : Date
-	private var monthlySalary: Float
-	private var rate : Float
-	private var role : String
-	private var employeeVehicle: Vehicle?
-	
-	var description: String{
+}
+
+extension Employee {
+	func getDescription() -> String{
 		var desc = "Name: \(getName()), a \(getRole()) \nAge: \(getAge())\n"
 		if let vehicle = employeeVehicle{
 			desc += vehicle.description
 		}
 		desc += "\n\(getName()) has an Occupation rate: \(getOccupationRate())%"
 		return desc
-	}
-	
-	init(
-		empId: String,
-		name: String,
-		dob: Date,
-		monthlySalary: Float,
-		rate: Float = DEFAULT_OCCUPATION_RATE,
-		role : String,
-		employeeVehicle: Vehicle?
-	) {
-		self.empId = empId
-		self.name = name
-		self.dob = dob
-		self.monthlySalary = monthlySalary
-		// Validating occupation rate as per the given scenarios
-		self.rate = validateOccupationRate(rate)
-		self.role = role
-		self.employeeVehicle = employeeVehicle
-		print("We have a new Employee: \(getName()), a \(getRole().lowercased())")
 	}
 	
 	func getEmpId() -> String {
@@ -71,7 +54,7 @@ class Employee: CustomStringConvertible {
 		return dob
 	}
 	
-	func setDob(dob: Date) {
+	mutating func setDob(dob: Date) {
 		self.dob = dob
 	}
 	
@@ -83,7 +66,7 @@ class Employee: CustomStringConvertible {
 		return rate
 	}
 	
-	func setOccupationRate(rate: Float) {
+	mutating func setOccupationRate(rate: Float) {
 		self.rate = validateOccupationRate(rate)
 	}
 	
@@ -91,7 +74,7 @@ class Employee: CustomStringConvertible {
 		return role
 	}
 	
-	func setRole(role: String) {
+	mutating func setRole(role: String) {
 		self.role = role
 	}
 	
@@ -108,8 +91,7 @@ class Employee: CustomStringConvertible {
 		return employeeVehicle
 	}
 	
-	func setEmployeeVehicle (employeeVehicle: Vehicle) {
+	mutating func setEmployeeVehicle (employeeVehicle: Vehicle) {
 		self.employeeVehicle = employeeVehicle
 	}
-	
 }

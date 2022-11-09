@@ -41,10 +41,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropdown" id="mek-DV-zE2" customClass="DropdownCell" customModule="employee_management" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="389.66666666666663" height="40.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="40.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mek-DV-zE2" id="7Dc-XI-JPD">
-                                            <rect key="frame" x="0.0" y="0.0" width="345.66666666666663" height="40.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="346" height="40.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OAG-Rc-LOz">

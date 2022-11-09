@@ -8,33 +8,23 @@
 import Foundation
 import UIKit
 
-class Vehicle: CustomStringConvertible {
-	private var make : String
-	private var plate : String
-	private var color : UIColor
-	private var category : String
+protocol Vehicle: CustomStringConvertible {
+	var make : String {get set}
+	var plate : String {get set}
+	var color : UIColor {get set}
+	var category : String {get set}
+}
+extension Vehicle{
 	
-	var description: String{
+	func getDescription()-> String {
 		return "\t- make: \(getMake()) \n\t- plate: \(getPlate()) \n\t- color: \(getColor().accessibilityName.capitalized) \n\t- category: \(getCategory())"
-	}
-	
-	init(
-		make: String,
-		plate: String,
-		color: UIColor,
-		category: String
-	) {
-		self.make = make
-		self.plate = plate
-		self.color = color
-		self.category = category
 	}
 	
 	func getMake () -> String{
 		return make
 	}
 	
-	func setMake (make: String) {
+	mutating func setMake (make: String) {
 		self.make = make
 	}
 	
@@ -42,7 +32,7 @@ class Vehicle: CustomStringConvertible {
 		return plate
 	}
 	
-	func setPlate (plate: String) {
+	mutating func setPlate (plate: String) {
 		self.plate = plate
 	}
 	
@@ -50,7 +40,7 @@ class Vehicle: CustomStringConvertible {
 		return color
 	}
 	
-	func setColor (color: UIColor) {
+	mutating func setColor (color: UIColor) {
 		self.color = color
 	}
 	
@@ -58,7 +48,7 @@ class Vehicle: CustomStringConvertible {
 		return category
 	}
 	
-	func setCategory(category: String) {
+	mutating func setCategory(category: String) {
 		self.category = category
 	}
 }

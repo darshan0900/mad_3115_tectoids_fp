@@ -7,13 +7,22 @@
 
 import Foundation
 
-class Tester : Employee {
+struct Tester : Employee {
+	
 	static let GAIN_FACTOR_ERROR = 10
+	
+	internal var empId: String
+	internal var name: String
+	internal var dob: Date
+	internal var monthlySalary: Float
+	internal var rate: Float
+	internal var role: String
+	internal var employeeVehicle: Vehicle?
 	
 	private var nbBugs : Int
 	
-	override var description: String{
-		return "\(super.description) and corrected \(getNoOfBugs()) bugs.\nHis/Her estimated annual income is $\(getAnnualIncome())"
+	var description: String{
+		return "\((self as Employee).getDescription()) and corrected \(getNoOfBugs()) bugs.\nHis/Her estimated annual income is $\(getAnnualIncome())"
 	}
 	
 	init(
@@ -25,28 +34,28 @@ class Tester : Employee {
 		rate: Float = DEFAULT_OCCUPATION_RATE,
 		employeeVehicle: Vehicle? = nil
 	) {
+		self.empId = empId
+		self.name = name
+		self.dob = dob
+		self.monthlySalary = monthlySalary
+		// Validating occupation rate as per the given scenarios
+		self.rate = validateOccupationRate(rate)
+		self.role = "Tester"
+		self.employeeVehicle = employeeVehicle
 		self.nbBugs = nbBugs
-		super.init(
-			empId: empId,
-			name: name,
-			dob: dob,
-			monthlySalary: monthlySalary,
-			rate: rate,
-			role: "Tester",
-			employeeVehicle: employeeVehicle
-		)
+		print("We have a new Employee: \(getName()), a \(getRole().lowercased())")
 	}
 	
 	func getNoOfBugs() -> Int {
 		return nbBugs
 	}
 	
-	func setNoOfBugs(nbBugs: Int) {
+	mutating func setNoOfBugs(nbBugs: Int) {
 		self.nbBugs = nbBugs
 	}
 	
-	override func getAnnualIncome() -> Float {
-		let baseAnnualIncome = super.getAnnualIncome()
+	func getAnnualIncome() -> Float {
+		let baseAnnualIncome = (self as Employee).getAnnualIncome()
 		let bugBonus = Float(getNoOfBugs() * Tester.GAIN_FACTOR_ERROR)
 		
 		let annualIncome = baseAnnualIncome + bugBonus

@@ -38,7 +38,7 @@ class EmployeeScreen: UIViewController {
 	@IBOutlet weak var vehicleGearStack: UIStackView!
 	@IBOutlet weak var sidecarStack: UIStackView!
 	
-	weak var employee: Employee?
+	var employee: Employee?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()

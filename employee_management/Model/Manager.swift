@@ -7,14 +7,23 @@
 
 import Foundation
 
-class Manager : Employee {
+struct Manager : Employee {
+	
 	static let GAIN_FACTOR_CLIENT = 500
 	static let GAIN_FACTOR_TRAVEL = 100
 	
+	internal var empId: String
+	internal var name: String
+	internal var dob: Date
+	internal var monthlySalary: Float
+	internal var rate: Float
+	internal var role: String
+	internal var employeeVehicle: Vehicle?
+	
 	private var nbClients : Int
 	
-	override var description: String{
-		return "\(super.description) He/She has brought \(getNoOfClients()) new clients.\nHis/Her estimated annual income is $\(getAnnualIncome())"
+	var description: String{
+		return "\((self as Employee).getDescription()) He/She has brought \(getNoOfClients()) new clients.\nHis/Her estimated annual income is $\(getAnnualIncome())"
 	}
 	
 	init(
@@ -26,28 +35,28 @@ class Manager : Employee {
 		rate: Float = DEFAULT_OCCUPATION_RATE,
 		employeeVehicle: Vehicle? = nil
 	) {
+		self.empId = empId
+		self.name = name
+		self.dob = dob
+		self.monthlySalary = monthlySalary
+		// Validating occupation rate as per the given scenarios
+		self.rate = validateOccupationRate(rate)
+		self.role = "Manager"
+		self.employeeVehicle = employeeVehicle
 		self.nbClients = nbClients
-		super.init(
-			empId: empId,
-			name: name,
-			dob: dob,
-			monthlySalary: monthlySalary,
-			rate: rate,
-			role: "Manager",
-			employeeVehicle: employeeVehicle
-		)
+		print("We have a new Employee: \(getName()), a \(getRole().lowercased())")
 	}
 	
 	func getNoOfClients() -> Int {
 		return nbClients
 	}
 	
-	func setNoOfClients(nbClients: Int) {
+	mutating func setNoOfClients(nbClients: Int) {
 		self.nbClients = nbClients
 	}
 	
-	override func getAnnualIncome() -> Float {
-		let baseAnnualIncome = super.getAnnualIncome()
+	func getAnnualIncome() -> Float {
+		let baseAnnualIncome = (self as Employee).getAnnualIncome()
 		let clientBonus = Float(getNoOfClients() * Manager.GAIN_FACTOR_CLIENT)
 		
 		let annualIncome = baseAnnualIncome + clientBonus

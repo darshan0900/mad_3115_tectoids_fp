@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 
-class Motorcycle: Vehicle {
+struct Motorcycle: Vehicle {
+	internal var make: String
+	internal var plate: String
+	internal var color: UIColor
+	internal var category: String
+	
 	private var sidecar: Bool
 	
-	override var description: String{
-		var desc = "Employee has a motorcycle. \n \(super.description) \n\t- "
+	var description: String{
+		var desc = "Employee has a motorcycle. \n \((self as Vehicle).getDescription()) \n\t- "
 		if getSidecar(){
 			desc+="with"
 		}else{
@@ -29,21 +34,19 @@ class Motorcycle: Vehicle {
 		category: String,
 		sidecar: Bool
 	) {
-		self.sidecar = sidecar
+		self.make = make
+		self.plate = plate
+		self.color = color
+		self.category = category
 		
-		super.init(
-			make: make,
-			plate: plate,
-			color: color,
-			category: category
-		)
+		self.sidecar = sidecar
 	}
 	
 	func getSidecar() -> Bool {
 		return sidecar
 	}
 	
-	func setSidecar(sidecar: Bool) {
+	mutating func setSidecar(sidecar: Bool) {
 		self.sidecar = sidecar
 	}
 	

@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 
-class Car: Vehicle {
+struct Car: Vehicle {
+	internal var make: String
+	internal var plate: String
+	internal var color: UIColor
+	internal var category: String
 	private var gear: String
 	private var type: String
 	
-	override var description: String{
-		return "Employee has a car. \n \(super.description)\n\t- gear type: \(getGear()) \n\t- type: \(getType())"
+	var description: String{
+		return "Employee has a car. \n \((self as Vehicle).getDescription())\n\t- gear type: \(getGear()) \n\t- type: \(getType())"
 	}
 	
 	init(
@@ -24,22 +28,20 @@ class Car: Vehicle {
 		gear: String,
 		type: String
 	) {
+		self.make = make
+		self.plate = plate
+		self.color = color
+		self.category = category
+		
 		self.gear = gear
 		self.type = type
-		
-		super.init(
-			make: make,
-			plate: plate,
-			color: color,
-			category: category
-		)
 	}
 	
 	func getGear() -> String {
 		return gear
 	}
 	
-	func setGear(gear: String) {
+	mutating func setGear(gear: String) {
 		self.gear = gear
 	}
 	
@@ -47,7 +49,7 @@ class Car: Vehicle {
 		return type
 	}
 	
-	func setType(type: String) {
+	mutating func setType(type: String) {
 		self.type = type
 	}
 	

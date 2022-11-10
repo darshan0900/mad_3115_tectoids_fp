@@ -283,6 +283,7 @@ class RegistrationScreen: UIViewController {
 		}
 		if convertedOccupationRate > 100 {
 			showAlert(message: "Please enter occupation rate less than 100", toFocus: self.occupationRate)
+			return
 		}
 		
 		

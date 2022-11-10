@@ -147,6 +147,7 @@ extension ListEmployeeScreen: UITableViewDelegate, UITableViewDataSource{
 			let item = employees[indexPath.row]
 			screen.employee = item
 			navigationController?.pushViewController(screen, animated: true)
+			tableView.deselectRow(at: indexPath, animated: true)
 		}
 	}
 	

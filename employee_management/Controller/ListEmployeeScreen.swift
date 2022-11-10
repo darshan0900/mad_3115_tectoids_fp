@@ -14,6 +14,7 @@ class ListEmployeeScreen: UIViewController {
 	
 	var searchController: UISearchController?
 	var employees: [Employee] = []
+	var lastEmpCount = 0
 	var filteredEmployees: [Employee] = []
 	var isFiltering: Bool{
 		return searchController?.isActive ?? false
@@ -47,14 +48,17 @@ class ListEmployeeScreen: UIViewController {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		
+		lastEmpCount += 1
 		employees.append(
 			Manager(empId: "EMP-003", name: "Lorianne Frisch", dob: formatter.date(from:"2004-11-05 21:32:00")!, nbClients: 20, monthlySalary: 60000.0, rate: 70.0, employeeVehicle: Car(make: "Renault Clio", plate: "TTT-567", color: UIColor.gray, category: "Normal", gear: "Manual", type: "Sport"))
 		)
 		
+		lastEmpCount += 1
 		employees.append(
 			Tester(empId: "EMP-002", name: "Terry Jendrich", dob: formatter.date(from:"2004-11-01 21:30:00")!, nbBugs: 7, monthlySalary: 3000.0, rate: 30.0, employeeVehicle: Car(make: "Mazda", plate: "QQQ-2452", color: UIColor.red, category: "Race", gear: "Manual", type: "Sedan"))
 		)
 		
+		lastEmpCount += 1
 		employees.append(
 			Programmer(empId: "EMP-001", name: "John Doe", dob: formatter.date(from: "2004-11-01 21:28:00")!, nbProjects: 8, monthlySalary: 6000.0, rate: 70.0, employeeVehicle:Motorcycle(make: "Kawasaki", plate: "FFF-546", color: UIColor.purple, category: "Normal", sidecar: false))
 		)
@@ -66,7 +70,7 @@ class ListEmployeeScreen: UIViewController {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		if let screen = storyboard.instantiateViewController(withIdentifier: "RegistrationScreen") as? RegistrationScreen {
 			screen.delegate = self
-			screen.empId = String(format: "EMP-%03d", employees.count+1)
+			screen.empId = String(format: "EMP-%03d", lastEmpCount + 1)
 			navigationController?.pushViewController(screen, animated: true)
 		}
 	}
@@ -151,6 +155,7 @@ extension ListEmployeeScreen: UITableViewDelegate, UITableViewDataSource{
 extension ListEmployeeScreen: RegistrationDelegate{
 	func addEmployee(employee: Employee) {
 		navigationController?.popViewController(animated: true)
+		lastEmpCount += 1
 		employees.insert(employee, at: 0)
 		let indexPath = IndexPath(row: 0, section: 0)
 		tableView.insertRows(at: [indexPath], with: .top)

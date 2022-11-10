@@ -161,6 +161,8 @@ extension UITableView {
 		titleLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
 		titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
 		titleLabel.text = title
+		titleLabel.adjustsFontSizeToFitWidth = true
+		titleLabel.textAlignment = .center
 		self.backgroundView = emptyView
 		self.separatorStyle = .none
 	}

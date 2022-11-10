@@ -15,11 +15,8 @@ class ListEmployeeScreen: UIViewController {
 	var searchController: UISearchController?
 	var employees: [Employee] = []
 	var filteredEmployees: [Employee] = []
-	var isSearchBarEmpty: Bool {
-		return searchController?.searchBar.text?.isEmpty ?? true
-	}
 	var isFiltering: Bool{
-		return searchController?.isActive ?? false && !isSearchBarEmpty
+		return searchController?.isActive ?? false
 	}
 	var count = 10
 	override func viewDidLoad() {
@@ -75,18 +72,21 @@ class ListEmployeeScreen: UIViewController {
 	}
 	
 	func filterData(text: String, category: Role? = .All) {
-		let input = text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
 		var filteredData = employees
 		if category != .All{
 			filteredData = employees.filter {
 				$0.getRole() == category?.rawValue
 			}
 		}
-		filteredEmployees = filteredData.filter {
-			$0.getRole().lowercased().contains(input) ||
-			$0.getName().lowercased().contains(input) ||
-			$0.getEmpId().lowercased().contains(input)
+		if !text.isEmpty{
+			let input = text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+			filteredData = filteredData.filter {
+				$0.getRole().lowercased().contains(input) ||
+				$0.getName().lowercased().contains(input) ||
+				$0.getEmpId().lowercased().contains(input)
+			}
 		}
+		filteredEmployees = filteredData
 		tableView.reloadData()
 	}
 }
